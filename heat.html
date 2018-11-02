@@ -1,0 +1,749 @@
+<html>
+<head>
+	<title>供热效果视图</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="js/icheck.js"></script>
+ 	<script type="text/javascript" src="layer/layer.js"></script>
+
+
+	<!-- <link rel="stylesheet" type="text/css" href="js/tooltips/normalize.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/tooltips/tooltip-classic.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/three-dots.min.css">
+    <style type="text/css">
+        .tooltip-contents .room_info .tempimg {
+            width: 15px;
+        }
+        .single_room .room_top{
+            border: 1px solid;
+            border-radius: 5px;
+            width: 166px;
+            height: 54px;
+            }
+        .cover{
+            height: 54px;
+            width: 166px;
+            border-radius: 5px;
+            top: -55px;
+            }
+        .room_top .radio{
+            padding-top: 10px;
+        }
+        .room_top .room_name{
+            padding-top: 8px;
+        }
+        .cover img{
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+	<!-- 顶部公司名称 -->
+
+		<div class="valveClose" id="valveClose">
+			<img src="images/toleft.png" id="imgClose">
+			阀门控制
+		</div>
+		<div class="valveOpen" id="valveOpen" style="display: none;">
+			<div class="valve_head">
+				<div class="valve_head_left">
+					阀门控制
+				</div>
+				<div class="valve_head_right">
+					<img src="images/toright.png" id="imgOpen">
+				</div>				
+			</div>
+			<div class="valve_body">
+				<div class="chose">
+					<select id="select_id">
+						<option value="1" selected>开度调节</option>
+						<option value="2">开关控制</option>
+						<option value="3">开度设定</option>
+					</select>
+				</div>
+				<div id="changebody">
+					<div id="f1" class="option" style="display: block;">
+						<div class="adec">
+							<img src="images/decrease.png" id="jian">
+							<input type="text" name="openstate" id="openstate" value="0">
+							<img src="images/add.png" id="jia">
+						</div>
+						<div class="confirm">
+							<button onclick="submitKaiduRange();">确定</button>
+							<button onclick="closeValveOpen();">取消</button>
+						</div>
+					</div>
+					<div id="f2" class="option" style="display: none;">
+						<div class="buttons">
+							<button onclick="openValve('ON')">普通开阀</button><!--  http://192.168.0.119:8780/ctrl/valveCtrl?valve=10201101010020&cmd=ON  !-->
+							<button onclick="openValve('FON')">强制开阀</button>   <!--  http://192.168.0.119:8780/ctrl/valveCtrl?valve=10201101010020&cmd=FON  !-->
+						</div>
+						<div class="buttons" style="padding-top: 20px;">
+							<button onclick="openValve('OFF')">普通关阀</button>  <!--   http://192.168.0.119:8780/ctrl/valveCtrl?valve=10201101010020&cmd=OFF -->
+							<button onclick="openValve('FOFF')">强制关阀</button>    <!-- http://192.168.0.119:8780/ctrl/valveCtrl?valve=10201101010020&cmd=FOFF -->
+						</div> 
+					</div>
+					<div id="f3" class="option" style="display: none;">
+						<div class="adec">
+								<div class="scale_panel">
+									
+									<div class="scale" id="bar">
+										<div></div>
+										<span id="btn"></span>
+									</div> 
+								</div> 
+								 <span id="title">1</span>
+						</div>
+						<div class="confirm">
+							<button onclick="submitKaidu();">确定</button>
+							<button onclick="closeValveOpen();">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="body_content" id="body_content">
+		<div class="choseBuild">
+			<div class="back"></div>
+			<div class="zoneName">
+				
+			</div>
+			<div class="buildSelect">
+				<select id="buildSelect">
+
+				</select>
+			</div>
+		</div>
+		<!-- 导航start -->
+		<div class="panels">
+			<div class="panel famen">
+				<a>
+					<img src="images/室温视图.png">
+					阀门视图
+				</a>
+			</div>
+			<div class="selected gongre">
+				<a>
+					<img src="images/室温视图.png">
+					供热效果视图 
+				</a>
+			</div>
+			<div class="panel hujian">
+				<a>
+					<img src="images/流量视图.png">
+					户间平衡视图
+				</a>
+			</div>
+			<div class="panel jicha">
+				<a>
+					<img src="images/jicha.png">
+					稽查管理视图
+				</a>
+			</div>
+			<div class="overflow_panel" >
+			</div>
+		</div>
+		<!-- 导航end -->
+		<!-- 温度区间 start-->
+		<div class="temp_zone">
+			
+				<img src="images/测温移动-小.png">
+			
+			<div class="temp_value">
+				测温移动
+			</div>
+				<img src="images/电池欠压房间-小.png">
+			
+			<div class="temp_value">
+				电池欠压
+			</div>
+			<div class="temp_color" style="background-color: #717070">
+			</div>
+			<div class="temp_value">
+				失联
+			</div>			
+			<div class="temp_color" style="background-color: #3d3d3d">
+			</div>
+			<div class="temp_value">
+				报停
+			</div>
+	
+		</div>
+		<!-- 温度区间 end -->
+		<!-- 单元start -->
+
+		<div class="scroll_unit" id="scroll_unit">
+
+	</div>
+
+
+
+	<div id="openContent" style="display: none;">
+		<div class="operation" id="total">
+			<div class="operation_left">
+				总数：<span></span>
+			</div>
+			<div class="operation_right">
+				已执行：<span></span>
+				 <div id="pro_dot" class="snippet" style="display: inline-block;margin-left: 60px;">
+		          <div class="stage">
+		            <div class="dot-pulse"></div>
+		          </div>
+		        </div>
+			</div>
+		</div>
+		<div class="operation_top" id="on">
+			<div class="operation_left">
+				当前执行：<span></span>
+			</div>
+			<div class="operation_right">
+				执行结果：<span></span>
+			</div>
+		</div>
+		<div id="results">
+		</div>
+
+	</div>
+   <script type="text/javascript" src="js/my.js"></script>
+	<script type="text/javascript">
+		//使滚动条随着窗口变化
+
+		autodivheight();
+		getColorZone();
+		getZoneBuilds();
+
+	    //获取数据
+	    $("#buildSelect").change(function(){
+		    buildId=$("#buildSelect").val();
+		   
+		    window.location.href="heat.html?buildId="+buildId+"&zoneId="+zoneId+"&zoneName="+zoneName;
+		}); 
+		//获取颜色区间
+
+	function getColorZone(){
+		$.ajax({
+			url:'http://192.168.0.136:1661/ScaleWebService/data/roomColorList?zoneId='+zoneId,
+			async:true,
+			type:'GET',
+			dataType:'json',
+			success:function(colorlist){
+				var html="";
+				$(colorlist).each(function(t){
+					var color=colorlist[t];
+					html=html+"<div class='temp_color' style='background-color:"+color.Color+";'></div><div class='temp_value'>"+color.Start+"°C~"+color.End+"°C</div>";
+				});
+				$(".temp_zone").append(html);
+			}
+		});
+	}
+	    //获取数据
+		$.ajax({
+			url:url,
+			async:false,
+			type:'GET',
+			dataType:'json',
+			success:function(data){
+		 		getUnitInfo(data);
+			}
+		});
+		function getUnitInfo(data){
+			var html="";
+			var flag=1;
+			$(data).each(function(index1){
+				var unit=data[index1]
+				var unitId=unit.Id;
+				var unitName=unit.Name;
+				var width=parseInt(182*unit.maxRoomCount)+16;
+				var unithtml="<div class='single_unit'><div class='unit_top' style='width:"+width+"'><div class='radio'><div class='u_radio'><input type='checkbox' class='units'  id='unit"+unitId+"' value='"+unitId+"'></div>全选</div><div class='unit_name'>"+unitName+"</div><div></div></div><div class='unit_content'>";
+				var pos=1;
+				var tclass="tooltip-content";
+				var zindex=1;
+				$(unit.floorList).each(function(index2){
+					var floor=unit.floorList[index2];
+							
+							if(pos==1||pos==2){
+								tclass="tooltip-content_bottom";
+								
+								zindex="1000"
+							}else{
+								tclass="tooltip-content";
+								zindex="100"
+								
+
+							}
+					var floorhtml="<div class='floor'>";
+					if(floor.viewList==null){
+					}else{
+						$(floor.viewList).each(function(index3){
+							var room=floor.viewList[index3];
+							var roomhtml="";
+							if(room==null){
+								roomhtml="<div class='single_room'></div>"
+							}else{
+								var isSupply=room.isSupply;
+								
+								var errlist=room.errList;
+								var name=room.Name;
+								var roomtemp=room.roomTemp;
+								var datatime=room.dataTime;
+								var valveStatus=room.valveStatus;
+								//判断valvestatus
+								var percent=0;
+								var scale=room.scale;
+								var roomId=room.roomId;
+								var valveaddr=room.ValveAddr;
+								var valveTag=room.valveTag;//阀门是否失联2失联
+								var fhtml="";
+								var tempTag=room.tempTag;//房间是否失联
+								var flowTag=room.flowTag;
+                       			var outTag=room.outTag;  //回水温度是否失联
+                       			var color;  //'阀门边框颜色'
+                       			var valveTime=room.valveTime;
+                       			var flowTime=room.flowTime;
+                        		var tempTime=room.tempTime;
+                       			var outTime=room.outTime;
+                       			var color=room.roomColor;
+                       			
+                       			//判断阀门边框颜色及背景
+ 								if(valveTag==2){
+									percent=scale+"%";
+									fhtml="<div class='room_bottom' style='border-color:"+color+"'><img src='images/失联.png'></div>"									
+								}else{
+									if(valveStatus==0){
+										//0开
+										percent='100%';
+									}else if(valveStatus==1){
+										//1关
+										percent=0;
+									}else if(valveStatus==2){
+										//2开度
+										percent=scale+"%";
+									}
+									//阀门
+									fhtml="<div class='room_bottom' style='border-color:"+color+"'><div class='pro pro_left' style='width:"+percent+"'></div><div class='pro pro_right'></div></div>";
+
+								}
+								if(percent=="-1%"){
+									percent="--";
+								}
+								//弹出框
+
+								if(isSupply==1){
+									var issupply="供暖";
+									//1供暖
+									if(tempTag==1){
+										//1未失联
+										if(errlist!="测温移动"&&errlist!="电池欠压"){
+											//没有错误
+											roomhtml="<div class='single_room tooltip ' id='"+roomId+"'><div class='room_top' style='border-color:"+room.roomColor+";background-color:"+room.roomColor+";'><div class='radio'><input class='room unit"+unitId+"' type='checkbox' roomname='"+name+"' id='flag"+flag+"' value='"+valveaddr+"' valvestatus='"+valveStatus+"' valvevalue='"+scale+"'></div><div class='room_name'>"+name+"</div></div><div class='tooltip-contents "+tclass+"'><div class='room_title'><img src='images/在线.png'>"+name+"</div><hr><div class='kdz'>开度值："+percent+"</div><div class='room_info'><div class='left'><img class='heatimg' src='images/供暖.png'>"+issupply+"</div><div class='right'><img class='tempimg' src='images/室温.png'>"+roomtemp+"℃</div></div><div class='room_time'><img src='images/时间.png'>"+tempTime+"</div></div></div>";
+										}else{
+											//错误
+											var imgsrc="";
+											 if(errlist=="测温移动"){
+												imgsrc="images/测温移动.png";
+											}else if(errlist=="电池欠压"){
+												imgsrc="images/电池欠压.png";
+											}
+											roomhtml="<div class='single_room tooltip' id='"+roomId+"'><div class='room_top' style='border-color:"+room.roomColor+";background-color:"+room.roomColor+";'><div class='radio'><input class='room unit"+unitId+"' type='checkbox' roomname='"+name+"' id='flag"+flag+"' value='"+valveaddr+"' valvestatus='"+valveStatus+"' valvevalue='"+scale+"'></div><div class='room_name'>"+name+"</div></div><div class='cover' onclick=changeCheck('flag"+flag+"')><img src='"+imgsrc+"'></div><div class='tooltip-contents "+tclass+"'><div class='room_title'><img src='images/在线.png'>"+name+"</div><hr><div class='kdz'>开度值："+percent+"</div><div class='room_info'><div class='left'><img class='heatimg' src='images/供暖.png'>"+issupply+"</div><div class='right'><img class='tempimg' src='images/室温.png'>"+roomtemp+"℃</div></div><div class='room_time'><img src='images/时间.png'>"+tempTime+"</div></div></div>";
+		
+										}
+									} 
+									if(tempTag==2||roomtemp=='-1.0'){
+										if(roomtemp=='-1.0')
+											roomtemp="--";
+										//2失联
+										roomhtml="<div class='single_room tooltip ' id='"+roomId+"'><div class='room_top' style='border-color:#717070;background-color:#717070;'><div class='radio'><input class='room unit"+unitId+"'  type='checkbox' roomname='"+name+"' id='flag"+flag+"' value='"+valveaddr+"' valvestatus='"+valveStatus+"' valvevalue='"+scale+"'></div><div class='room_name'>"+name+"</div></div><div class='tooltip-contents "+tclass+"'><div class='room_title'><img src='images/离线.png'>"+name+"</div><hr><div class='kdz'>开度值："+percent+"</div><div class='room_info'><div class='left'><img class='heatimg' src='images/供暖.png'>"+issupply+"</div><div class='right'><img class='tempimg' src='images/室温.png'>"+roomtemp+"℃</div></div><div class='room_time'><img src='images/时间.png'>"+tempTime+"</div></div></div>";
+									}
+								}else{
+									if(roomtemp=='-1.0')
+											roomtemp="--";
+									var issupply="报停";
+									//0报停
+                                    var ifline="images/在线.png";
+                                    if(tempTag==1){
+                                        ifline="images/在线.png";
+                                    }else{
+                                        ifline="images/离线.png";
+                                    }
+									roomhtml="<div class='single_room tooltip'></div>";
+
+								}
+							}
+							flag++;
+							floorhtml=floorhtml+roomhtml;
+						
+						})
+
+					}
+				    floorhtml=floorhtml+"</div>"
+				    pos++;
+					unithtml=unithtml+floorhtml;
+				});
+				unithtml=unithtml+"</div></div>"
+			
+				html=html+unithtml;
+			});
+			$(".scroll_unit").html(html);
+		};
+
+        $(".units").click(function(){
+                var unitId=this.id;
+                var array=$("."+unitId);
+                for(var i=0;i<array.length;i++){
+                	if(!array[i].disabled){
+                		$(array[i]).prop('checked',this.checked);
+                	}
+                }
+              		
+		});
+
+
+        //获取选中的房间
+        function getCheckRoom(){
+            var list=$(".room");
+            if(list.length>0){
+                var roomList=new Array();
+                $(list).each(function(index){
+                    var m=list[index];
+                    var id=m.id;
+                    if(m.checked){
+                    	var v=$("#"+id);
+                    	var room=new Object();
+                    	room.valve=v.attr("value");
+                    	room.valvestatus=v.attr("valvestatus");
+                    	room.scale=v.attr("valvevalue");
+                    	room.roomname=v.attr("roomname");
+                        roomList.push(room);
+                    }
+                });
+              
+                return roomList;
+            }
+            return null;
+        }
+
+		$(".tooltip").mouseover(function (argument) {
+			// body...
+			var id=this.id;
+			$("#"+id).css("z-index","999");
+
+		});
+		$(".tooltip").mouseleave(function (argument) {
+			// body...
+			var id=this.id;
+			$("#"+id).css("z-index","1");
+		});
+
+		//取消选中带浮层的checkbox
+		function changeCheck(id) {
+			var id="#"+id;
+			var isChecked = $(id).prop('checked');
+			$(id).prop("checked",!isChecked);
+		}
+
+			//阀门调控
+		var total=0;
+		var finished=0;
+		var nowname="";
+		var noewResult="";
+		var bhtm="";
+		var flag=true;
+		//开度调节
+		function submitKaiduRange() {
+			var range=$("#openstate").val();
+			var list=getCheckRoom();
+			if(list.length<=0){
+				layer.msg('请选择房间'); 
+			}else{
+				total=list.length;
+				$(list).each(function(index) {
+					var room=list[index];
+					var scale=room.scale;
+					scale=parseInt(scale)+parseInt(range);
+
+					if(scale<1){
+						scale=1;
+					}else if(scale>100){
+						scale=100;
+					}
+					room.scale=scale;			
+				});
+				//页面层
+				//捕获页
+				$("#pro_dot").css("display","inline-block");
+				layer.open({
+				  type: 1,
+				  area: ['746px', '290px'],
+				  shade: "0.3",
+				  title: false, //不显示标题
+				  content: $('#openContent'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+				  cancel: function(){
+				  	$("#total .operation_left span").html("");
+				  	$("#total .operation_right span").html("");
+				  	$("#on .operation_left span").html("");
+				  	$("#on .operation_right span").html("");
+				  	$("#results").html("");
+				  	 total=0;
+					 finished=0;
+					 nowname="";
+					 noewResult="";
+					 bhtm="";
+					 flag=true;
+				  }
+				});
+							
+				submitRange(list);
+			}
+		}
+
+
+		function submitKaidu(){
+			var list=getCheckRoom();
+			if(list.length<=0){
+				layer.msg('请选择房间'); 
+			}else{
+				var scale=$("#f3 #title").text();
+			
+				$(list).each(function(index) {
+					// body...
+					var room=list[index];
+					room.scale=scale;
+				})
+				$("#pro_dot").css("display","inline-block");
+				layer.open({
+					  type: 1,
+					  area: ['746px', '290px'],
+					  shade: false,
+					  title: false, //不显示标题
+					  content: $('#openContent'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+					  cancel: function(){
+					  	$("#total .operation_left span").html("");
+					  	$("#total .operation_right span").html("");
+					  	$("#on .operation_left span").html("");
+					  	$("#on .operation_right span").html("");
+					  	$("#results").html("");
+
+					  	 total=0;
+						 finished=0;
+						 nowname="";
+						 noewResult="";
+						 bhtm="";
+					  }
+					});
+								
+				submitRange(list);				
+			}
+
+		}
+		function submitRange(list){
+			total=list.length;
+			$("#total .operation_left span").html(total);
+			var index=0;
+			setValve(list,index);
+			var interval=setInterval(function(){
+				var m=total;
+				var n=$("#total .operation_right span").text();
+				if(m==n){
+					$("#pro_dot").css("display","none");
+					clearInterval(interval);
+				}
+			},2000);
+
+			
+		}
+		function setValve(list,index){
+			$("#on span").html("");
+			if(index<list.length){
+				var room=list[index];
+				var valve=room.valve;
+				var scale=room.scale;
+				var roomname=room.roomname;
+				$("#on .operation_left span").html(roomname);
+				if(valve=="--"){
+					$("#on .operation_left span").html("");
+					$("#on .operation_right span").html("");
+					$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>请完善阀门地址</span></div></div>");
+					$("#total .operation_right span").html(++finished);
+					setValve(list,++index);
+				}else{
+					$.ajax({
+						url:"http://192.168.0.119:8780/ctrl/scaleCtrl?valve="+valve+"&scale="+scale,
+						dataType:'json',
+						type:'GET',
+						async:false,
+						success:function(data){
+							var t=0;
+							var id=data.CtrlId;
+							var flag=false;
+							var interval=setInterval(function(){
+								if(t==8){
+									//zhuijia
+									$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>操作失败</span></div></div>");
+									finished++;
+									$("#total .operation_right span").html(finished);
+									flag=true;
+									setValve(list,++index);
+									clearInterval(interval);
+								}else{
+									var re=getResult(id);
+									if(!re.Over){
+										$("#on .operation_right span").html(re.ExecResult);		
+										t++;		
+									}
+									else{
+										$("#on .operation_left span").html("");
+									  	$("#on .operation_right span").html("");
+										$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>"+re.ExecResult+"</span></div></div>");
+										finished++;
+										$("#total .operation_right span").html(finished);
+										flag=true;
+										setValve(list,++index);
+									 	clearInterval(interval);
+									}
+
+								}
+						
+							},15000);
+							// var interval0=setInterval(function(){
+							// 	if(flag){
+							// 		setValve(list,++index);
+							// 		clearInterval(interval0);
+							// 	}
+							// },2000);
+
+						}
+					});
+				}
+			}
+
+		}
+		function getResult(id){
+			var re;
+			$.ajax({
+				url:"http://192.168.0.119:8780/ctrl/queryCtrlById?id="+id,	
+				dataType:'json',
+				type:'GET',
+				async:false,
+				success:function (data) {
+					re=data;					
+				},
+				error:function(res){
+
+				}
+			});
+			return re;
+		}
+
+		//开关控制
+		function openValve(name) {
+			// body...
+			var list=getCheckRoom();
+
+			if(list.length<=0){
+				layer.msg('请选择房间'); 
+			}else{
+                $("#pro_dot").css("display","inline-block");
+				layer.open({
+				  type: 1,
+				  area: ['746px', '290px'],
+				  shade: false,
+				  title: false, //不显示标题
+				  content: $('#openContent'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+				  cancel: function(){
+				  	$("#total .operation_left span").html("");
+				  	$("#total .operation_right span").html("");
+				  	$("#on .operation_left span").html("");
+				  	$("#on .operation_right span").html("");
+				  	$("#results").html("");
+				  	 total=0;
+					 finished=0;
+					 nowname="";
+					 noewResult="";
+					 bhtm="";
+					 flag=true;
+				  }
+				});
+							
+				total=list.length;
+				$("#total .operation_left span").html(total);
+				var index=0;
+				setValveOpen(list,index,name);
+                var interval=setInterval(function(){
+				var m=total;
+				var n=$("#total .operation_right span").text();
+				if(m==n){
+					$("#pro_dot").css("display","none");
+					clearInterval(interval);
+				}
+			},2000);
+			}
+		}
+		function setValveOpen(list,index,name){
+			if(index<list.length){
+				var room=list[index];
+				var valve=room.valve;
+				var scale=room.scale;
+				var roomname=room.roomname;
+				$("#on .operation_left span").html(roomname);
+				if(valve=="--"){
+					$("#on .operation_left span").html("");
+					$("#on .operation_right span").html("");
+					$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>请完善阀门地址</span></div></div>");
+					$("#total .operation_right span").html(++finished);
+				}else{
+					$.ajax({
+						url:"http://192.168.0.119:8780/ctrl/valveCtrl?valve="+valve+"&cmd="+name,
+
+						dataType:'json',
+						type:'GET',
+						async:false,
+						success:function(data){
+							var t=0;
+							var id=data.CtrlId;
+							var flag=false;
+							var interval=setInterval(function(){
+								if(t==8){
+									//zhuijia
+									$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>操作失败</span></div></div>");
+									finished++;
+									$("#total .operation_right span").html(finished);
+									flag=true;
+									setValveOpen(list,++index);
+									clearInterval(interval);
+								}else{
+									var re=getResult(id);
+									if(!re.Over){
+										$("#on .operation_right span").html(re.ExecResult);				
+									}
+									else{
+										$("#on .operation_left span").html("");
+									  	$("#on .operation_right span").html("");
+										$("#results").prepend("<div class='operation_result'><div class='operation_left'>执行结束：<span>"+roomname+"<span></div><div class='operation_right'>执行结果：<span>"+re.ExecResult+"</span></div></div>");
+										finished++;
+										$("#total .operation_right span").html(finished);
+										flag=true;
+										setValveOpen(list,++index);
+									 	clearInterval(interval);
+									}
+									t++;
+								}
+						
+							},15000);
+							// var interval0=setInterval(function(){
+							// 	if(flag){
+							// 		setValveOpen(list,++index);
+							// 		clearInterval(interval0);
+							// 	}
+							// },1000);
+
+						}
+					});
+				}				
+			}
+
+}
+	</script>
+	
+</body>
+</html>

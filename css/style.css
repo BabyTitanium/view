@@ -1,0 +1,761 @@
+	body{
+			color: #ffffff;
+			font-style: "微软雅黑";
+
+		}
+		.body_top{
+			height: 66px;
+			color: #ffffff;
+			line-height: 66px;
+			background-color:rgba(0,0,0,0.2);
+			padding: 0 20px;
+		
+		}
+		.body_top .body_top_left{
+			font-size: 28px;
+			float: left;
+		}
+		.body_top .body_top_right{
+			font-size: 18px;
+			float: right;
+		}
+		body{
+			background-image: url("../images/background.png");
+			background-size: 100% 100%;
+			margin: 0;
+		}
+
+		 input[type='radio']{
+			width: 18px;
+			height:18px;
+			padding-top: 2px;
+		}
+		.back{
+			display: inline-block;
+			width: 34px;
+			height: 34px;
+			background-image: url("../images/返回-默认.png");
+		}
+		.back:hover{
+			background-image: url("../images/返回-点击.png");
+		}
+		.body_content{
+			margin:5  20px 20px 20px;
+/*			border-width: 1px;
+			border-color: #162a65;
+			border-style: solid;
+			height: */
+		}
+		.body_content .panels{
+			height: 48px;
+			
+			/*background-color:rgba(255,255,255,0.2);*/
+		}
+		.panels div{
+/*			height: 48px;
+			margin: 5px;  */
+			font-size: 20px;
+			text-align: center;
+			line-height: 45px;
+		}
+		.panels a:link{
+			text-decoration: none;
+			color: #ffffff;
+		}
+		.panels a:visited{
+			text-decoration: none;
+			color: #ffffff;
+		}
+		.panels a:hover{
+			text-decoration: none;
+			color: #ffffff;
+		}
+		.panels a:active{
+			text-decoration: none;
+			color: #ffffff;
+		}
+		.panels .panel{
+			float: left;
+			width: 260px;
+			height: 48px;
+			background-color: #263264;
+		}
+		.panels .selected{
+			border-top: 3px solid #6396d7;	
+			float: left;
+			width: 260px;
+			height: 45px;
+		}
+		.panels .overflow_panel{
+			background-color: #263264;
+			margin-left: 1040px;
+			height: 48px;
+		}
+		.panels img{
+			display: inline;
+			margin-bottom: -5px;
+		}
+
+        .changemode{
+            float: left;
+            margin-left: 25px;
+            background-color: #263264;
+            border-radius: 15px;
+            width: 200px;
+            border:1px solid #384991;
+            height: 30px;
+            margin-top: 10px;
+        }
+        .changemode div{
+            float: left;
+            border: 1ps solid;
+            border-radius: 15px;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+           cursor: pointer;
+        }
+        .changemode .selected{
+            background-color: #3782bb;
+            border: 1ps solid;
+            border-radius: 15px;
+        }
+		.body_content .temp_zone{
+			min-height: 50px;
+			text-align: right;
+			padding-right: 15px;
+			line-height: 50px;
+		}
+		.temp_zone .temp_color{
+			border-radius: 10px;
+			width: 20px;
+			height: 20px;
+			/*background-color: red;*/
+			margin-right: 3px;
+			margin-top: 10px;
+			margin-bottom: -3px;
+		}
+		.temp_zone div{
+			display: inline-block;
+		}
+		.temp_zone img{
+			margin-bottom: -5px;
+		}
+		.temp_zone .temp_value{
+			margin-right: 24px;
+			margin-left: 2px;
+		}
+		.body_content .scroll_unit{
+		/*	height: 80%;*/
+			overflow-x: auto;
+			overflow-y: auto;
+			margin-left: 10px;
+			margin-right: 30px;
+			position: fixed;
+			 white-space: nowrap;
+
+		}
+		@media(max-width: 800px){
+			.overflow_panel{
+				display: none;
+			}
+		}
+		
+		.scroll_unit::-webkit-scrollbar{/*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
+			width:10px;
+			height:10px;
+		}
+		.scroll_unit::-webkit-scrollbar-button{/*滚动条两端的按钮，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置2）*/
+			display:none;
+		}
+		.scroll_unit::-webkit-scrollbar-track{/*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
+
+		}
+		.scroll_unit::-webkit-scrollbar-track-piece:horizontal{/*内层轨道，滚动条中间部分（位置4）*/
+			/* 如果浏览器不支持渐变，使用图像作为背景 */ 
+			/*background: url(gradient.jpg); */
+			/* Webkit: Safari 4-5, Chrome 1-9 */ 
+			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#041d44), to(#0b2978)); 
+			/* Webkit: Safari 5.1+, Chrome 10+ */ 
+			background: -webkit-linear-gradient(top, #041d44, #0b2978); 
+			/* Firefox 3.6+ */ 
+			background: -moz-linear-gradient(top, #041d44, #0b2978); 
+			/* Opera 11.10+ */ 
+			background: -o-linear-gradient(top, #041d44, #0b2978); 
+			/* IE 10 */ 
+			background: -ms-linear-gradient(top, #041d44, #0b2978); 
+			/* IE < 10 */ 
+			/* 注意：这一行必须写在最后 */ 
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#041d44, endColorStr=#0b2978);
+		}
+		.scroll_unit::-webkit-scrollbar-track-piece:vertical{/*内层轨道，滚动条中间部分（位置4）*/
+			/* 如果浏览器不支持渐变，使用图像作为背景 */ 
+			/*background: url(gradient.jpg); */
+			/* Webkit: Safari 4-5, Chrome 1-9 */ 
+			background: -webkit-gradient(linear, 0% 100%, 0% 0%, from(#041d44), to(#0b2978)); 
+			/* Webkit: Safari 5.1+, Chrome 10+ */ 
+			background: -webkit-linear-gradient(left, #041d44, #0b2978); 
+			/* Firefox 3.6+ */ 
+			background: -moz-linear-gradient(left, #041d44, #0b2978); 
+			/* Opera 11.10+ */ 
+			background: -o-linear-gradient(left, #041d44, #0b2978); 
+			/* IE 10 */ 
+			background: -ms-linear-gradient(left, #041d44, #0b2978); 
+			/* IE < 10 */ 
+			/* 注意：这一行必须写在最后 */ 
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#041d44, endColorStr=#0b2978);
+		}
+		.scroll_unit::-webkit-scrollbar-thumb:vertical{/*滚动条里面可以拖动的那部分（位置5）*/
+			background:repeating-linear-gradient(-50deg, 
+              #364581, #364581 8px,
+              #29336c 0, #29336c 16px);
+			border-radius: 30px;
+		}
+		.scroll_unit::-webkit-scrollbar-thumb:horizontal{/*滚动条里面可以拖动的那部分（位置5）*/
+			background:repeating-linear-gradient(-50deg, 
+              #364581, #364581 8px,
+              #29336c 0, #29336c 16px);
+			border-radius: 30px;
+		}
+		.scroll_unit::-webkit-scrollbar-corner {/*边角（位置6）*/
+			background:#0b2978; 
+		}
+		.scroll_unit::-webkit-scrollbar-resizer  {/*定义右下角拖动块的样式（位置7）*/
+			background:#FF0BEE;
+		}
+
+		.scroll_unit .single_unit{
+			/*float: left;*/
+			width: auto;
+			height: auto;
+			border-width: 1px;
+			border-color: #092360;
+			border-style: solid;
+			margin:0 15px 15px 15px;
+ 			display: inline-block;
+ 			vertical-align: text-top;
+		}
+		.single_unit .unit_top{
+			background-color: #384991;
+			height: 38px;
+			line-height: 38px;
+			border-width: 0 2px;
+			border-style: solid;
+			border-color: #49bfde;
+			position: relative;
+			z-index: 1000;
+			margin-top: -1px;
+		}
+		.unit_top div{
+			float: left;
+			width: 33.3%;
+		}
+		.unit_top .u_radio{
+			padding-top: 10px;
+			padding-right: 10px;
+			float: left;
+			width: auto;
+		}
+		.unit_name{
+			text-align: center;
+			font-size: 22px;
+		}
+		.unit_content{
+			margin-top: 40px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.unit_content .floor{
+			height: 70px;
+		}
+		.unit_content .floor .single_room{
+			float: left;
+			margin: 8px;
+			width: 166px;
+			height: 54px;
+			cursor: pointer;
+			z-index: 1;
+		}
+		.unit_top .radio{
+			
+			font-size: 16;
+		}
+		.unit_top input{
+			margin-left: 30px;
+		}
+		.single_room .room_top{
+			border-width: 1px;
+			border-style: solid;
+			border-radius: 5px 5px 0 0;
+			height: 36px;
+			line-height: 35px;
+			color: #ffffff;
+		}
+		.single_room .room_bottom{
+			height: 15px;
+			border-width: 0px 1px 1px 1px;
+			border-style: solid;
+			/*border-color: #8d6eba;*/
+			border-radius: 0 0 5px 5px;
+		}
+		.room_bottom .pro{
+			float: left;
+			height: 15px;
+		}
+		.room_bottom .pro_left{
+			background-color: #44cb62;
+			border-radius: 0 0 5px 5px;
+		}
+		.room_bottom .pro_right{
+			background-color: #000000;
+		}
+		.room_top div{
+			float: left;
+		}
+		.room_top input[type="checkbox"]{
+			margin-top: 10px;
+			margin-left: 10px;
+		}
+		.room_top .room_name{
+			padding-left: 18px;
+		}
+		.fjsl_top{
+			background-color: #717070;
+			border-color: #717070;
+		}
+		.fjsl_bottom{
+			background-color: #717070;
+			border-color: #717070;
+		}
+		.fmsl{
+			background-image: url("../images/失联.png");
+		}
+		.cover{
+			width: 164px;
+			height: 38px;
+			z-index: 3;
+			position: relative;
+			left: 0;
+			top: -54px;
+			background-color:rgba(255,255,255,0.8);
+			border-radius: 5px 5px 0 0;
+			text-align: center;
+		}
+		.cover img{
+			margin-top: 5px;
+		}
+		.gnzt{
+			border-color: #ef4e4e;
+			background-color: #ef4e4e;
+		}
+		.temp0_top{
+			border-color: #3d3d3d;
+			background-color: #3d3d3d;
+		}
+		.temp0_bottom{
+			border-color: #3d3d3d;
+		}
+		.temp1_top{
+			border-color: #205699;
+			background-color: #205699;
+		}
+		.temp1_bottom{
+			border-color: #205699;
+		}
+		.temp2_top{
+			border-color: #f58449;
+			background-color: #f58449;
+		}
+		.temp2_bottom{
+			border-color: #f58449;
+		}
+		.temp3_top{
+			border-color: #d86160;
+			background-color: #d86160;
+		}
+		.temp3_bottom{
+			border-color: #d86160;
+		}
+		.temp4_top{
+			border-color: #f43836;
+			background-color: #f43836;
+		}
+		.temp4_bottom{
+			border-color: #f43836;
+		}
+		.temp5_top{
+			border-color: #6c6b6d;
+			background-color: #6c6b6d;
+		}
+		.temp5_bottom{
+			border-color: #6c6b6d;
+		}
+
+		.tooltip-contents{
+			background-color: #3c55bc ;
+			z-index: 999;
+		}
+		.tooltip-contents .room_title{
+			
+			height: 25px;
+			font-size: 18;
+			line-height: 30px;
+		}
+		.tooltip-contents .room_title img{
+			width: 17px;
+			height: 24px;
+			display: inline;
+			margin-left: 65px;
+			margin-right: 10px;
+			margin-top: 5px;
+		}
+		.tooltip-contents .room_info{
+			height: 25px;
+		}
+		.tooltip-contents .kdz{
+			margin-left: 22px;
+			font-size: 16px;
+			height: 25px;
+		}
+		.tooltip-contents .room_info div{
+			float: left;
+			font-size: 16px;
+		}
+		.tooltip-contents .room_info .left{
+			margin-left: 20px;
+		}
+		.tooltip-contents .room_info .right{
+			margin-left: 20px;
+		}
+		.tooltip-contents .room_info .heatimg{
+			width: 24px;
+			height: 24px;
+			margin-right: 2px;
+		}
+		.tooltip-contents .room_info .tempimg{
+			width: 12px;
+			height: 24px;
+			margin-right: 2px;
+		}
+		.tooltip-contents .room_time{
+			font-size: 16px;
+			margin-bottom: 10px;
+		}
+		.tooltip-contents .room_time img{
+			width: 24px;
+			height: 24px;
+			margin-left: 20px;
+		}
+
+
+
+/*
+		.flow_room{
+			
+			background-color: #d86160;
+
+
+
+		}*/
+		.flow_border{
+			border-color: #d86160;
+		}
+		.flow_stop_border{
+			
+			border-color: #3d3d3d;
+		}
+
+		.single_room .room_out{
+			z-index:2;
+			border-radius: 5px 5px 0 0;
+			height: 36px;
+			position: absolute;
+		}
+		.room_top .room_inner_left{
+			border-radius: 5px 5px 0 0;
+			height: 36px;
+		
+		}
+		.room_top .room_inner_left{
+			border-radius: 5px 5px 0 0;
+			height: 36px;
+			
+		
+		}
+
+
+		/*阀门控制*/
+		.valveClose{
+			z-index: 1000;
+			position: absolute;
+			right: 0;
+			top: 15px;
+			width: 118px;
+			height: 36px;
+			line-height: 36px;
+			font-size: 18;
+			/* 如果浏览器不支持渐变，使用图像作为背景 */ 
+			/*background: url(gradient.jpg); */
+			/* Webkit: Safari 4-5, Chrome 1-9 */ 
+			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3f549e), to(#2c7cda)); 
+			/* Webkit: Safari 5.1+, Chrome 10+ */ 
+			background: -webkit-linear-gradient(top, #3f549e, #2c7cda); 
+			/* Firefox 3.6+ */ 
+			background: -moz-linear-gradient(top, #3f549e, #2c7cda); 
+			/* Opera 11.10+ */ 
+			background: -o-linear-gradient(top, #3f549e, #2c7cda); 
+			/* IE 10 */ 
+			background: -ms-linear-gradient(top, #3f549e, #2c7cda); 
+			/* IE < 10 */ 
+			/* 注意：这一行必须写在最后 */ 
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#3f549e, endColorStr=#2c7cda);
+		}
+		.valveOpen{
+			z-index: 1000;
+			position: absolute;
+			right: 0;
+			top: 15px;
+			width: 252px;
+			height: 204px;
+			background-color: #5f75c6;
+			border-radius: 5px 0 0 0;
+			font-style: "微软雅黑";
+			color: #ffffff;
+		}
+		.valveOpen .valve_head{
+			height: 36px;
+			background: url("../images/smallbg.png");
+			line-height: 36px;
+			font-size: 18;
+		}
+		.valveOpen .valve_body{
+			height: 30px;
+		}
+		.valve_head div{
+			float: left;
+		}
+		.valve_head .valve_head_left{
+			padding: 3px 10px;
+			padding-left: 20px;
+		}
+		.valve_head .valve_head_right img{
+			padding-top: 10px;
+			padding-left: 60px;
+		}
+		.valve_body .chose{
+			padding-top: 20px;
+			padding-left: 20px;
+			padding-bottom: 20px;
+		}
+		.valve_body .chose select{
+			background-color: #032367;
+			color: #ffffff;
+			width: 138px;
+			height: 26px;
+			border:none;
+		}
+		#changebody{
+			height: 100px;
+		}
+		.valve_body button{
+			background-color: #4054a4;
+			width: 100px;
+			height: 30px;
+			border: none;
+			border-radius: 5px;
+			color: #ffffff;
+			margin-left: 10px;
+
+		}
+
+		.valve_body .adec{
+			padding-left: 20px;
+			padding-bottom: 20px;
+			height: 30px;
+		}
+		.valve_body .adec input{
+			float: left;
+			width: 86px;
+			height: 30px;
+			text-align:center;
+		}
+		.valve_body .adec img{
+			float: left;
+		}
+		.valve_body .confirm{
+			padding-left: 10px;
+		}
+		.valve_body .buttons{
+		
+			padding-left: 10px;
+		}
+	/*滑块*/
+	.scale_panel{
+	font-size:12px;
+	color:#999;
+	width:184px;
+	padding-right: 10px;
+	line-height:18px; 
+	left:60px;
+	top:-0px;
+	float: left;
+	margin-top: 5px;
+}
+.scale_panel .r{
+	float:right;
+}
+.scale span{
+	background:url("../images/bar.png") no-repeat; 
+	width:18px;
+	height:25px; 
+	position:absolute; 
+	top:-5px;
+	cursor:pointer;
+
+	background-size: 100% 100%;
+}
+.scale{
+	background-repeat: repeat-x;
+	background-position: 0 100%; 
+	background-color: #021332;
+	width: 184px;
+	height: 16px;
+	position: relative;
+	font-size: 0px;
+	border-radius: 6px;
+         }
+.scale div{ 
+	background-repeat: repeat-x; 
+	width: 0px; 
+	position: absolute; 
+	height: 16px; 
+	width: 0; 
+	left: 0; 
+	bottom: 0; 
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1e5c92), to(#2d87f2)); 
+			/* Webkit: Safari 5.1+, Chrome 10+ */ 
+			background: -webkit-linear-gradient(top, #1e5c92, #2d87f2); 
+			/* Firefox 3.6+ */ 
+			background: -moz-linear-gradient(top, #1e5c92, #2d87f2); 
+			/* Opera 11.10+ */ 
+			background: -o-linear-gradient(top, #1e5c92, #2d87f2); 
+			/* IE 10 */ 
+			background: -ms-linear-gradient(top, #1e5c92, #2d87f2); 
+			/* IE < 10 */ 
+			/* 注意：这一行必须写在最后 */ 
+			FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#1e5c92, endColorStr=#2d87f2);
+				border-radius: 3px;
+}
+	#openContent{
+		margin-left: 25px;
+		margin-right: 25px;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		color: #6eadff;
+	}
+	#on{
+		color: #ffffff;
+	}
+		#openContent span{
+			color: #ffffff;
+		}
+	.operation_top{
+		border: 1px solid #135382;
+		background-color: #517bca;
+	}
+	.operation,.operation_result,.operation_top{
+		height: 48px;
+	}
+	.operation_left,.operation_right{
+		float: left;
+
+		height: 48px;
+		line-height: 48px;
+		margin-left: 20px;
+	}
+	.operation_left{
+	width: 200px;
+	}
+	.operation_right{
+	width: 400px;
+	}
+	.operation_left span,.operation_right span{
+		padding-left: 20px;
+	}
+	.operation_result{
+/*		border-color: #135382;
+		border-style: solid;*/
+		border-left: 1px solid #135382;
+		border-right:  1px solid #135382;
+		border-bottom:  1px solid #135382;
+	}
+
+
+
+/*--------------------*/
+        .single_room .room_top{
+            border: 1px solid;
+            border-radius: 5px;
+            width: 164px;
+            height: 52px;
+            }
+        .cover{
+            height: 54px;
+            width: 166px;
+            border-radius: 5px;
+            top: -54px;
+            }
+        .room_top .radio{
+            padding-top: 10px;
+        }
+        .room_top .room_name{
+            padding-top: 8px;
+        }
+        .cover img{
+            padding-top: 8px;
+        }
+        .single_room .room_out {
+            height: 52px;
+         
+        }
+        .room_top .room_inner_left {
+            height: 52px;
+            border-radius: 5px;
+        }
+        .room_top .room_inner_right {
+            height: 52px;
+        }
+        .choseBuild{
+			height: 40px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.zoneName{
+			font-size: 22;
+			display: inline-block;
+			line-height: 40px;
+			color: #e9f4e9;
+			vertical-align: top;
+		}
+		.buildSelect{
+			display: inline-block;
+			vertical-align: top;
+			padding-top: 5px;
+		}
+		.buildSelect select{
+			color: #e9f4e9;
+			font-size: 16;
+			width: 100px;
+			height: 30px;
+			background-color: #263264;
+			border-radius: 20px;
+			border-color: #263264;
+			padding-left: 10px;
+			padding-right: 10px;
+
+		}
+
+
+
+
